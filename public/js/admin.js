@@ -3,12 +3,15 @@ let yuvaks = [];
 
 const $ = sel => document.querySelector(sel);
 
-async function api(url, opts = {}){
-  const res = await fetch(url, {
-    headers: { 'Content-Type': 'application/json' },
-    credentials: 'same-origin',
-    ...opts,
-  });
+const API = "https://nimit-bhulku-leaderboard.onrender.com";
+
+async function api(url, opts = {}) {
+    const res = await fetch(`${API}${url}`, {
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        ...opts,
+    });
+
   if(res.status === 401){
     showLogin();
     throw new Error('Not authenticated');
