@@ -1,12 +1,16 @@
 const express = require('express');
+const cors = require('cors');
 const session = require('express-session');
 const multer = require('multer');
 const bcrypt = require('bcryptjs');
 const { parse } = require('csv-parse/sync');
 const path = require('path');
 const { load, save, PALETTE } = require('./db');
-
 const app = express();
+app.use(cors({
+  origin: "https://nimit-bhulku-leaderboard.vercel.app",
+  credentials: true
+}));
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 2 * 1024 * 1024 } });
 
 app.use(express.json());
