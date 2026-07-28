@@ -14,7 +14,7 @@ function initialsOf(name){
 }
 
 async function loadEvent(){
-  const res = await fetch('/api/event');
+  const res = await fetch('https://nimit-bhulku-leaderboard.onrender.com/api/event')
   const ev = await res.json();
   document.getElementById('eventMeta').innerHTML =
     `<span>🕐 ${ev.date || ''}</span><span>${ev.teamCount} teams</span><span>${ev.yuvakCount} yuvaks</span>`;
@@ -23,7 +23,7 @@ async function loadEvent(){
 // ---------- Teams ----------
 
 async function loadTeams(){
-  const res = await fetch('/api/teams');
+  const res = await fetch('https://nimit-bhulku-leaderboard.onrender.com/api/teams')
   allTeams = await res.json();
   renderTeams(allTeams);
   populateTeamFilter();
@@ -88,7 +88,7 @@ function populateTeamFilter(){
 }
 
 async function loadYuvaks(){
-  const res = await fetch('/api/yuvaks');
+  const res = await fetch('https://nimit-bhulku-leaderboard.onrender.com/api/yuvaks')
   allYuvaks = await res.json();
   applyYuvakFilters();
 }
@@ -173,7 +173,7 @@ document.getElementById('yuvakTeamFilter').addEventListener('change', applyYuvak
 // ---------- Report ----------
 
 async function loadReport(){
-  const res = await fetch('/api/report');
+  const res = await fetch('https://nimit-bhulku-leaderboard.onrender.com/api/report')
   const r = await res.json();
 
   const stats = [
@@ -229,7 +229,7 @@ function renderShare(stripId, legendId, items){
 // ---------- Rulebook ----------
 
 async function loadRulebook(){
-  const res = await fetch('/api/rulebook');
+  const res = await fetch('https://nimit-bhulku-leaderboard.onrender.com/api/rulebook')
   const rb = await res.json();
 
   document.getElementById('rulebookIntro').textContent = rb.intro || '';
@@ -285,7 +285,7 @@ document.getElementById('gearLoginForm').addEventListener('submit', async e => {
   const errEl = document.getElementById('gearLoginError');
   errEl.textContent = '';
   try{
-    const res = await fetch('/api/login', {
+    const res = await fetch('https://nimit-bhulku-leaderboard.onrender.com/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'same-origin',
