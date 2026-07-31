@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#E0392E">
+<title>Nimit Bhulku — Leaderboard</title>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-box">NB</div>
+    <div class="title-block">
+      <div class="title">Nimit Bhulku</div>
+      <div class="subtitle" id="eventMeta">Loading…</div>
+    </div>
+    <nav class="nav" id="mainNav">
+      <a href="#" data-tab="teams" class="active">🏆 <span>Teams</span></a>
+      <a href="#" data-tab="yuvaks">👥 <span>Yuvaks</span></a>
+      <a href="#" data-tab="report">📊 <span>Report</span></a>
+      <a href="#" data-tab="rulebook">📖 <span>Rulebook</span></a>
+    </nav>
+    <button class="gear-link" id="settingsBtn" title="Admin settings">⚙️</button>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- TEAMS VIEW -->
+  <div id="teamsView">
+    <div class="search-bar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="searchInput" type="text" placeholder="Search team or mentor…">
+    </div>
+    <div id="podium" class="podium"></div>
+    <div id="teamList" class="list"></div>
+  </div>
+
+  <!-- YUVAKS VIEW -->
+  <div id="yuvaksView" style="display:none;">
+    <div class="search-row">
+      <div class="search-bar" style="flex:1;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="yuvakSearchInput" type="text" placeholder="Search your name…">
+      </div>
+      <select id="yuvakTeamFilter" class="team-filter">
+        <option value="">All teams</option>
+      </select>
+    </div>
+    <div id="yuvakPodium" class="podium"></div>
+    <div id="yuvakGroupedList"></div>
+  </div>
+
+  <!-- REPORT VIEW -->
+  <div id="reportView" style="display:none;">
+    <h2 class="page-title">Report</h2>
+    <p class="page-subtitle">A snapshot of the latest published leaderboard data.</p>
+
+    <div class="stat-grid" id="statGrid"></div>
+
+    <div class="report-card">
+      <div class="report-card-title">📊 Team Points <span class="report-card-sub">All teams, ranked</span></div>
+      <div id="teamPointsBars" class="bar-list"></div>
+    </div>
+
+    <div class="report-card">
+      <div class="report-card-title">🕓 Points Share <span class="report-card-sub">Each team's slice of the total points</span></div>
+      <div id="pointsShareStrip" class="share-strip"></div>
+      <div id="pointsShareLegend" class="share-legend"></div>
+    </div>
+
+    <div class="report-card">
+      <div class="report-card-title">🧩 Where Points Come From <span class="report-card-sub">How yuvaks earned their points, by category</span></div>
+      <div id="categoryStrip" class="share-strip"></div>
+      <div id="categoryLegend" class="share-legend"></div>
+    </div>
+  </div>
+
+  <!-- RULEBOOK VIEW -->
+  <div id="rulebookView" style="display:none;">
+    <h2 class="page-title">Rulebook</h2>
+    <p class="page-subtitle" id="rulebookIntro">How to earn points and climb the leaderboard.</p>
+
+    <div class="report-card">
+      <div class="report-card-title">🏆 Points Table</div>
+      <table class="points-table">
+        <thead><tr><th>Activity</th><th style="text-align:right;">Points</th></tr></thead>
+        <tbody id="pointsTableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="report-card">
+      <div class="report-card-title">👥 Get-Together Rules</div>
+      <ul class="rule-list" id="getTogetherList"></ul>
+    </div>
+
+    <div class="report-card">
+      <div class="report-card-title">⚠️ Important Notes</div>
+      <ul class="rule-list" id="importantNotesList"></ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- Admin login modal (triggered from the gear icon) -->
+<div id="loginModalOverlay" class="modal-overlay" style="display:none;">
+  <div class="modal">
+    <h3 class="section-title">Admin login</h3>
+    <p class="hint">Enter the admin password to manage this leaderboard.</p>
+    <form id="gearLoginForm">
+      <label class="field-label">Username</label>
+      <input class="field-input" id="gearUser" type="text" autocomplete="username" required>
+      <label class="field-label">Password</label>
+      <input class="field-input" id="gearPass" type="password" autocomplete="current-password" required>
+      <div id="gearLoginError" class="error-text"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="gearCancelBtn">Cancel</button>
+        <button type="submit" class="btn btn-primary">Log in</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
