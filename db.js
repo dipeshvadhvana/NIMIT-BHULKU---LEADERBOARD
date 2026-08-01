@@ -10,7 +10,10 @@ const DOC_ID = 'main';
 
 let clientPromise = null;
 if (uri) {
-  const client = new MongoClient(uri);
+  // family: 4 forces IPv4 for the underlying TCP connections. Some cloud hosts (Render
+  // included) have flaky/misconfigured IPv6 routing that corrupts the TLS handshake with
+  // Atlas, producing a generic "tlsv1 alert internal error" — forcing IPv4 avoids that path.
+  const client = new MongoClient(uri, { family: 4 });
   clientPromise = client.connect().then(c => {
     console.log('Connected to MongoDB Atlas');
     return c;

@@ -457,4 +457,9 @@ app.put('/api/admin/password', requireAuth, h(async (req, res) => {
 }));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Nimit Bhulku leaderboard running on http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Nimit Bhulku leaderboard running on http://localhost:${PORT}`);
+  console.log(process.env.MONGODB_URI
+    ? 'MONGODB_URI is set — attempting to connect to MongoDB Atlas...'
+    : '⚠️  MONGODB_URI is NOT set — running on in-memory storage, data will reset on every restart!');
+});
